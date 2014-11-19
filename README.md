@@ -11,4 +11,4 @@ SGE.fit<-optim(rep(0,length(T2.Values)*2),fn=SGE,M=Measured.Data,to=T2.axis,T2=T
 smoothing=0.001,sig=41,sigwidth=1.0,sigweightA=0.01, sigweightB=0.01,
 lower=Max, upper=Min, control=list(maxit=20000000), method=“L-BFGS-B”)
 
-M is the measured T2 relaxation data.  to is the time axis of the T2 relaxation data.  T2 is the range of T2 values over which the function is searching for a solution. sig is the center of the sigmoid function as an index of the vector of T2. The minimisation may time out after a certain number of iterations before convergence is reached.  This can be avoided by increasing the value of maxit.
+M is the measured T2 relaxation data.  to is the time axis of the T2 relaxation data.  T2 is the range of T2 values over which the function is searching for a solution. sig is the center of the sigmoid function as an index of the vector of T2. The minimisation may time out after a certain number of iterations before convergence is reached.  This can be avoided by increasing the value of maxit.  The values for smoothing, sigweightA and sigweightB are examples only and should be optimised for each data set.  
