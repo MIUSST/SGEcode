@@ -1,0 +1,17 @@
+SGE<-function(X, M, to, T2, smoothing, sig, sigwidth, sigweightA, sigweightB)
+{
+ halfX<-length(X)/2
+ A<-X[1:halfX]
+ B<-X[(halfX + 1):length(X)]
+ sigcent<-c(-sig:(-sig + (halfX - 1)))
+ sigup<-((1/(1 + exp(-sigcent * sigwidth))) * sigweightA + smoothing)
+ sigdown<-(smoothing + (1 - (1/(1 + exp(-sigcent * sigwidth)))) * sigweightB)
+ Mhat<-rep(0,length(M))
+  for (ii in 1:halfX)
+   {
+    Mhat <- Mhat + A[ii] * exp(-((to/T2[ii])^2)) + B[ii] * exp(-to/T2[ii])
+   }
+  SS <- sum((M - Mhat)^2) + sum(A * sigup) + sum(B * sigdown)
+  print(SS)
+  return(SS)
+}
